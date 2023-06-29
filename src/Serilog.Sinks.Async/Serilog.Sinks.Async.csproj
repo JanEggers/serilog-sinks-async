@@ -1,10 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Description>Asynchronous sink wrapper for Serilog.</Description>
     <VersionPrefix>1.5.1</VersionPrefix>
     <Authors>Jezz Santos;Serilog Contributors</Authors>
-    <TargetFrameworks>net45;netstandard1.1;net461;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Serilog.Sinks.Async</AssemblyName>
@@ -26,9 +26,10 @@
     <!-- Don't reference the full NETStandard.Library -->
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
   </PropertyGroup>
-  
+    
   <ItemGroup>
     <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' Or '$(TargetFramework)' == 'net461' ">
@@ -41,6 +42,18 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="System.Threading.Channels">
+      <Version>7.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Threading.Channels">
+      <Version>7.0.0</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

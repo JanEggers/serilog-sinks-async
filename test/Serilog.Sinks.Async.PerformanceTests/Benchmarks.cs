@@ -1,15 +1,11 @@
-﻿using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Running;
+using Serilog.Sinks.Async.PerformanceTests;
+using System.Xml;
 using Xunit;
 
-namespace Serilog.Sinks.Async.PerformanceTests
-{
-    public class Benchmarks
-    {
-        [Fact]
-        public void Benchmark()
-        {
-            BenchmarkRunner.Run<ThroughputBenchmark>();
-            BenchmarkRunner.Run<LatencyBenchmark>();
-        }
-    }
-}
+
+//BenchmarkRunner.Run<ThroughputBenchmark>(); // channel 4x faster // immutable -20% slower
+BenchmarkRunner.Run<LatencyBenchmark>(); // channel -27 slower % 
+
+var i = 0;
